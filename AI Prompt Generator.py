@@ -1324,7 +1324,7 @@ def generate_prompt():
     prompt_template = (
     "{playernum} {playerses}. Every session before the final session should end on a {sesend}.\n\n"
     "{setmast} {tonemast}.\n"
-    "{writethis}\n\n{include}\n\nTHINGS: {things}\n\nACTIONS:{actions}"
+    "{writethis}\n\n{include}\n\nTHINGS: {things}\n\nACTIONS: {actions}"
 )
 
     # Final formatting
@@ -1347,14 +1347,27 @@ def generate_prompt():
     text_output.delete("1.0", tk.END)
     text_output.insert(tk.END, final_prompt)
 
+def copy_to_clipboard():
+    text = text_output.get("1.0", tk.END).strip()
+    root.clipboard_clear()
+    root.clipboard_append(text)
+    root.update()  # Keeps clipboard contents after app is closed
+
 # GUI setup
 root = tk.Tk()
 root.title("AI Prompt Generator")
 
-generate_button = tk.Button(root, text="Generate Prompt", command=generate_prompt)
-generate_button.pack(pady=10)
+# Create a frame to hold both buttons in a single row
+button_frame = tk.Frame(root)
+button_frame.pack(pady=10)
 
-text_output = tk.Text(root, height=18, width=70, wrap=tk.WORD)
+generate_button = tk.Button(button_frame, text="Generate Prompt", command=generate_prompt)
+generate_button.pack(side=tk.LEFT, padx=5)
+
+copy_button = tk.Button(button_frame, text="Copy to Clipboard", command=copy_to_clipboard)
+copy_button.pack(side=tk.LEFT, padx=5)
+
+text_output = tk.Text(root, height=25, width=70, wrap=tk.WORD)
 text_output.pack(padx=10, pady=10)
 
 root.mainloop()
