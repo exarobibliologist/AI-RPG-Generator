@@ -3,34 +3,40 @@ import random
 import re
 
 # Example variables (you can expand or replace these)
-playernumbers = ["Write a tabletop RPG campaign that can be played by up to 2d3 players",
-"Write a tabletop RPG campaign that can be played by 1 player",
+playernumbers = ["Write a tabletop RPG campaign that happens",
+"Write a tabletop RPG campaign with 5d5 unique NPC that happens",
 ]
-playersessions = ["over 4d4 sessions",
+playersessions = ["in a never-ending series of game sessions",
+"over 4d4 sessions",
 "in a fast-moving game session",
 ]
 sessionend = ["suspenseful cliffhanger",
+"abrupt cliffhanger",
 "positive note",
+"negative note",
+"psychological puzzle",
 "mind-twisting puzzle",
 ]
 settingmaster = ["The setting should be {setting}",
 "The setting should start out in {setting} and transistion to {setting2}",
+"The setting should transistion between the setting of {setting} and {setting2}",
 "The setting should transistion back and forth between {setting} and {setting2}",
 ]
-tonemaster = ["and the tone should be {tone}",
-"and transistion between the tone of {tone} and {tone2}",
-"and the tone should transistion back and forth between {tone} and {tone2}",
+tonemaster = ["The tone should be {tone}",
+"The tone should start out in {tone} and transistion to {tone2}",
+"The tone should transistion between the tone of {tone} and {tone2}",
+"The tone should transistion back and forth between {tone} and {tone2}",
 ]
 settinglist = ["A barren desert with nothing more than dead land for as far as the eye can see",
-"A beautiful world filled to the brim with dragons and other amazing creatures, but also completely devoid of life.",
+"A beautiful world filled to the brim with dragons and other amazing creatures, but completely devoid of normal life",
 "A boarding school built on an alien planet",
 "A castle in the middle of a deep, dark forest",
-"A city made entirely out of ice and snow.",
+"A city made entirely out of ice and snow",
 "A city of the undead",
 "A crowded coffee shop",
 "A crowded subway train at rush hour",
 "A cruise ship adrift at sea",
-"A dark and dangerous world where mutants, robots, cyborgs, zombies, and other vile creatures are constantly trying to kill each other.",
+"A dark and dangerous world where mutants, robots, cyborgs, zombies, and other vile creatures are constantly trying to kill each other",
 "A dark forest full of traps and magical creatures",
 "A dark forest full of traps and magical creatures",
 "A derelict luxury liner adrift in space (with a secret inside!)",
@@ -43,7 +49,7 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "A futuristic manufacturing facility with",
 "A futuristic mega-city at night, full of glowing billboards advertising products that no one will ever buy (and there's a great deal more to discover!)",
 "A futuristic sports arena inside a mountain range",
-"A great white wasteland covered entirely in snow and ice. The temperature is far too cold for any sort of human settlement.",
+"A great white wasteland covered entirely in snow and ice. The temperature is far too cold for any sort of human settlement",
 "A library at night",
 "A lighthouse on an isolated island",
 "A lush jungle of tall, sprawling trees that are completely covered in thick vines and tangled undergrowth",
@@ -52,17 +58,19 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "A massive library full of real, physical books that no one has ever read before",
 "A massive tree with a labyrinth of interconnected rooms and underground tunnels deep within its roots, filled with strange creatures like nothing ever seen on Earth before",
 "A mysterious technological planet filled with massive construction projects that seem to have no purpose whatsoever",
-"A once proud civilization was reduced to ruins by an unknown enemy.",
-"A peaceful village in the mountains where everything is quiet and calm. It’s all fun and games until someone shows up with a gun, demanding whatever valuables you might be hiding away. Once they get what they want, you’re either forced into servitude or simply executed on the spot (depending on how nice their boss happens to be feeling at the time)",
-"A peaceful world with lush fields, rolling hills, and deep forests where life is bright and cheery. The sky is always clear blue; there are no storms or hurricanes to be found.",
+"A once proud civilization was reduced to ruins by an unknown enemy",
+"A peaceful village in the mountains where everything is quiet and calm."
+"A peaceful world with lush fields, rolling hills, and deep forests where life is bright and cheery. The sky is always clear blue; there are no storms or hurricanes to be found",
 "A post-apocalyptic wasteland",
-"A post-apocalyptic wasteland populated by desperate survivors scavenging for resources to survive another day. There are still pockets of civilization here and there, but they have fallen into chaos as the population has dwindled due to starvation or plague. The landscape is littered with debris from the former days, while the skies are a burning orange and red. The air is thick with ash and dust, making breathing difficult at best.",
+"A post-apocalyptic wasteland populated by desperate survivors scavenging for resources to survive another day."
+"There are still pockets of civilization here and there, but they have fallen into chaos as the population has dwindled due to starvation or plague."
+"The landscape is littered with debris from the former days, while the skies are a burning orange and red."
 "A quiet coastal town full of quaint little houses sitting at the bottom end of a steep cliffside overlooking calm, glassy waters",
 "A quiet little town that has been completely abandoned for reasons still being investigated. It’s everyone for themselves out here in the wasteland, and sometimes people just get sick of living life on their own",
 "A rickety old wooden bridge collapsed into the raging river below it",
 "A single room in an apartment complex near a major city where strange noises and smells come from beneath the floorboards late at night",
 "A small farmhouse on a large plot of farmland, surrounded by woods and swamps on all sides",
-"A small shuttlecraft piloted by an AI on its way to explore Pluto and beyond",
+"A small shuttlecraft piloted by an AI on its way to explore Pluto",
 "A small town that has been cut off from civilization for centuries upon centuries, isolated from humanity behind seemingly impenetrable walls built to keep out dangerous monsters that lurk outside the village’s limits",
 "A small, floating island somewhere in the Indian Ocean that is only accessible every seven years when the tides pull it closer to other islands and civilizations ashore",
 "A space shuttle orbiting around Jupiter",
@@ -72,7 +80,7 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "A tropical island forgotten by time",
 "A wealthy man’s lavish estate sitting alone on top of a hill overlooking the city below it",
 "A world filled with genetically modified creatures",
-"A world where the sun is just a bright point in the sky, but there are entire civilizations out there that have completely abandoned their own star for another one entirely. There’s no way to travel between them without making a trip through an inter-dimensional rift or wormhole",
+"A world where there are entire civilizations out there that travel to other stars and planets through an inter-dimensional rift or wormhole",
 "Abandon Prison Camps from WWI and WWII",
 "Abandoned Amusement Parks (Asbury Park, New Jersey)",
 "Across the surface of Europa during sunrise over Valhalla Crater",
@@ -84,12 +92,10 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "Alternate history",
 "Amusement Parks",
 "An abandoned amusement park at night",
-"An abandoned amusement park at night",
-"An abandoned amusement park at night",
 "An abandoned mansion",
 "An abandoned warehouse filled with secret passageways that are impossible to find without help from someone who knows them by heart",
 "An aircraft carrier or battleship sitting in the middle of an abandoned port",
-"An alien world full of colorful plants/animals (and other creatures) that somehow still manages to be boring as hell. There aren’t many places for settlers to set up shop, so it’s mostly just a large.",
+"An alien world full of colorful plants/animals (and other creatures) that somehow still manages to be boring as hell. There aren’t many places for settlers to set up shop, so it’s mostly just a large",
 "An ancient temple deep within a jungle",
 "An empty school after everyone has gone home for the day",
 "An endless desert where sandstorms strike without warning and can carry entire structures away if they aren’t built properly to withstand the elements",
@@ -179,10 +185,10 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "In a cave deep beneath a mountain on another world",
 "In a dark alley in New York City at night, desperately trying to find your way home from work before something bad happens",
 "In a massive city made of towers stacking high into the sky, each one attached to another by bridges and elevators that stretch from floor to floor",
-"In a massive library filled to the brim with books so old, they crumble to dust when touched by human hands, at least if their age is not protected by magic or advanced technology beyond what humanity understands today",
+"In a massive library filled to the brim with books so old, they crumble to dust when touched by human hands",
 "In a small town in the center of a large valley surrounded by dense forests and thick swamps",
 "In a tent at a massive music festival miles away from civilization",
-"In the belly of a massive whale as it swims through dark, frigid waters filled with horrific monsters and other life forms from Earth's deepest nightmares.",
+"In the belly of a massive whale as it swims through dark, frigid waters filled with horrific monsters and other life forms from Earth's deepest nightmares",
 "In the mouth of a massive dragon as it flies through the sky",
 "Industrial Revolution",
 "Inside a Presidential Limousine Riding Through Town",
@@ -224,11 +230,10 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "Neverland/Childworld",
 "Night Clubs & Bars (NYC)",
 "Ocean Liner",
-"On a far-off planet orbiting a distant star where friendly inhabitants will welcome you with open arms, but be careful about what you accept or take from them - the planetary economy might not be able to handle Earth's money supply",
-"On an abandoned oil platform in the middle of an ocean where strange sea creatures lurk, and unknowable horrors hide just out of sight under dark, stormy waters",
+"On a far-off planet orbiting a distant star where friendly inhabitants will welcome you with open arms, but be careful about what you accept or take from them",
 "On an abandoned oil platform in the middle of an ocean where strange sea creatures lurk, and unknowable horrors hide just out of sight under dark, stormy waters",
 "On an elevated platform at the center of a small island",
-"On the highway around a major city at rush hour.",
+"On the highway around a major city at rush hour",
 "On the set of a cheesy old science fiction movie from the 1960s",
 "On the surface of Venus during sunrise over Sif Mons Crater",
 "On top of a skyscraper during a thunderstorm at night",
@@ -236,7 +241,7 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "Outdoor Skating Rink",
 "Outpost",
 "Palace and Gardens of Versailles",
-"Paris, but it's hell in this instance.",
+"Paris, but it's hell in this instance",
 "Parisian Cafe",
 "Post-Apocalyptic",
 "Pre-European Americas",
@@ -285,11 +290,11 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "The Great Wall of China (Northern China)",
 "The house at the end of a long, winding road leading to nowhere else but more road with no landmarks or distinguishing characteristics",
 "The inside of a department store during the busiest shopping day of the year",
-"The inside of a giant amusement park filled with all sorts of rides and attractions. Unfortunately, the park has been deserted for decades, so anything that can move is inoperable. The vast majority of people who went missing over the years were just sucked into this place when they happened to be in the wrong place at the wrong time.",
-"The inside of a giant glass dome where the air is breathable, no one can see in or out. The inhabitants are completely cut off from the outside world (except radio communications)",
+"The inside of a giant amusement park that has been deserted for decades, so anything that can move is inoperable",
+"The inside of a giant glass dome where the air is breathable, no one can see in or out, and the inhabitants are completely cut off from the outside world",
 "The inside of a massive haunted house or castle",
-"The inside of a refrigerator, freezer, walk-in cooler, meat locker, etc.",
-"The inside of a spaceship or space station has crash-landed on an alien world (and beyond!)",
+"The inside of a refrigerator, freezer, walk-in cooler, meat locker, etc",
+"The inside of a spaceship or space station has crash-landed on an alien world",
 "The Moon",
 "The North Pole and the Arctic Ocean",
 "The Oval Office of the White House",
@@ -311,7 +316,7 @@ settinglist = ["A barren desert with nothing more than dead land for as far as t
 "Underground",
 "Underground while being chased by trolls with weapons forged from precious metals and stones no human has ever seen before",
 "Underwater",
-"Underwater - Like 20,000 Leagues Under the Sea.",
+"Underwater - Like 20,000 Leagues Under the Sea",
 "Urban Streets of Any Large City",
 "Victorian Era",
 "Viking Explorers",
@@ -1219,13 +1224,6 @@ firstthings = ["Advanced Intelligence",
 "Warehouse",
 "Wedding",
 ]
-writingmethod = ["Give me a bulleted outline describing the world the players will be playing in. 1st level bullets describe major locations (cities, metropolis, significant areas). 2nd level describes minor locations or NPC's that exist inside those 1st level locations. 3rd level can build off 2nd level, and so on.",
-"Give me a bulleted outline of the story. 1st level should be the major plot points. 2nd level should be minor plot points. 3rd level should be ideas for character arcs. 4th level should be possible events.",
-"Start giving me suggestions on how the campaign starts and slowly progress the story, giving suggestions about the plot.",
-"Start giving me suggestions on how the campaign starts and slowly progress the story, giving suggestions about player development.",
-"Start giving me suggestions on how the campaign starts and slowly progress the story, giving suggestions about NPC arcs.",
-"Give me suggestions how to develop the world so I can allow the players freedom to do whatever they like.",
-]
 thingstoinclude = ["Use the THINGS to give some suggestions of the plot, using ACTIONS to drive the plot.",
 "Use the THINGS to develop the game around the players, and give suggestions how the players can use ACTIONS to complete tasks that show up in the game.",
 ]
@@ -1280,6 +1278,11 @@ firstactions = ["Alert",
 "Travel",
 "Win",
 ]
+writingmethod = ["a bulleted outline describing the world the players will be playing in. 1st level bullets describe major locations (cities, metropolis, significant areas); 2nd level describes minor locations or NPC's that exist inside those 1st level locations; 3rd level can build off 2nd level, and so on.",
+"a bulleted outline of the story. 1st level should be the major plot points; 2nd level should be minor plot points; 3rd level should be ideas for character arcs; 4th level should be possible events.",
+"suggestions on how the campaign starts and slowly progress the story, giving suggestions about the plot, player development, and NPC arcs.",
+"suggestions how to develop the world so I can allow the players freedom to do whatever they like.",
+]
 
 # Dice roll parser
 def roll_dice(expr):
@@ -1323,8 +1326,8 @@ def generate_prompt():
 
     prompt_template = (
     "{playernum} {playerses}. Every session before the final session should end on a {sesend}.\n\n"
-    "{setmast} {tonemast}.\n"
-    "{writethis}\n\n{include}\n\nTHINGS: {things}\n\nACTIONS: {actions}"
+    "{setmast}\n\n{tonemast}.\n\nWrite the first scene of how the campaign starts, giving me {writethis}\n\nOnly write one scene. I will request the next scene after telling you how the game went.\n\n"
+    "{include}\n\nTHINGS: {things}\n\nACTIONS: {actions}"
 )
 
     # Final formatting
