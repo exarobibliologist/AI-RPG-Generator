@@ -4,11 +4,12 @@ import re
 
 # Example variables (you can expand or replace these)
 playernumbers = ["Write a tabletop RPG campaign that happens",
+"Write a tabletop RPG campaign where each PC starts the story in a different way, and meets all the other players in the first session, and then progresses",
 "Write a tabletop RPG campaign with 5d5 unique NPC that happens",
 ]
 playersessions = ["in a never-ending series of game sessions",
 "over 4d4 sessions",
-"in a fast-moving game session",
+"in a series of fast-moving game sessions",
 ]
 sessionend = ["suspenseful cliffhanger",
 "abrupt cliffhanger",
@@ -1313,9 +1314,9 @@ def generate_prompt():
     tone2 = random.choice(tonelist)
     writethis = random.choice(writingmethod)
     include = random.choice(thingstoinclude)
-    things_list = random.sample(firstthings, 5)
+    things_list = random.sample(firstthings, 10)
     things = ", ".join(things_list)
-    actions_list = random.sample(firstactions, 5)
+    actions_list = random.sample(firstactions, 10)
     actions = ", ".join(actions_list)
     
     # Choose and format setting prompt after setting/setting2 are known
